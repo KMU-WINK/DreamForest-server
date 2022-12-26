@@ -1,7 +1,7 @@
 package com.example.dreamforest.model
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import jakarta.persistence.*
+import javax.persistence.*
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 @Entity
