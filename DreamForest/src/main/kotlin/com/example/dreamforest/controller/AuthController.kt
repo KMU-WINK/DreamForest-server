@@ -15,7 +15,7 @@ import javax.servlet.http.Cookie
 import javax.servlet.http.HttpServletResponse
 
 @RestController
-@RequestMapping("api/users")
+@RequestMapping("user")
 class AuthController(private val userService: UserService) {
 
     @PostMapping("signup")
@@ -55,7 +55,7 @@ class AuthController(private val userService: UserService) {
         return ResponseEntity.ok(Message(jwt))
     }
 
-    @GetMapping("user")
+    @GetMapping("info")
     fun user(@CookieValue("jwt") jwt: String?): ResponseEntity<Any> {
         try {
             if (jwt == null) {
@@ -70,7 +70,7 @@ class AuthController(private val userService: UserService) {
         }
     }
 
-    @PutMapping("user/{user_id}")
+    @PutMapping("update/{user_id}")
     fun updateUserInfo(@PathVariable user_id : Long, @RequestBody userUpdateDTO: UserUpdateDTO) : Long? {
         return userService.updateUserInfo(user_id, userUpdateDTO)
     }
