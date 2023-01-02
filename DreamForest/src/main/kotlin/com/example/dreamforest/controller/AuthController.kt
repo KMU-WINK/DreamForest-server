@@ -1,9 +1,6 @@
 package com.example.dreamforest.controller
 
-import com.example.dreamforest.dto.LoginDTO
-import com.example.dreamforest.dto.Message
-import com.example.dreamforest.dto.SignupDTO
-import com.example.dreamforest.dto.UserUpdateDTO
+import com.example.dreamforest.dto.*
 import com.example.dreamforest.entity.User
 import com.example.dreamforest.service.UserService
 import io.jsonwebtoken.Jwts
@@ -55,18 +52,18 @@ class AuthController(private val userService: UserService) {
         return ResponseEntity.ok(Message(jwt))
     }
 
-    @GetMapping("info")
-    fun user(@CookieValue("jwt") jwt: String?): ResponseEntity<Any> {
+    @PostMapping("info")
+    fun user(@RequestBody jwt: UserDTO?): ResponseEntity<Any> {
         try {
             if (jwt == null) {
-                return ResponseEntity.status(401).body(Message("unauth"))
+                return ResponseEntity.status(401).body(Message("jwtnull"))
             }
 
-            val body = Jwts.parser().setSigningKey("secret").parseClaimsJws(jwt).body
+            val body = Jwts.parser().setSigningKey("secret").parseClaimsJws(jwt.token).body
 
             return ResponseEntity.ok(this.userService.getById(body.issuer.toLong()))
         } catch (e: Exception) {
-            return ResponseEntity.status(401).body(Message("unauth"))
+            return ResponseEntity.status(401).body(Message("wrong auth"))
         }
     }
 
