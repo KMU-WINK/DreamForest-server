@@ -1,5 +1,6 @@
-package com.example.dreamforest.model
+package com.example.dreamforest.entity
 
+import com.example.dreamforest.dto.UserUpdateDTO
 import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -8,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Int = 0
+    var id: Long = 0
 
     @Column(unique = true)
     var email = ""
@@ -30,6 +31,13 @@ class User {
 
     fun comparePassword(password: String): Boolean {
         return BCryptPasswordEncoder().matches(password, this.password)
+    }
+
+    fun update(userUpdateDTO: UserUpdateDTO){
+        this.email = userUpdateDTO.email.toString()
+        this.name = userUpdateDTO.name.toString()
+        this.nickname = userUpdateDTO.nickname.toString()
+        this.password = userUpdateDTO.password.toString()
     }
 
 }

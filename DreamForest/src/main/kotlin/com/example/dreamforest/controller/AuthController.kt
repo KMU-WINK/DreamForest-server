@@ -3,7 +3,8 @@ package com.example.dreamforest.controller
 import com.example.dreamforest.dto.LoginDTO
 import com.example.dreamforest.dto.Message
 import com.example.dreamforest.dto.SignupDTO
-import com.example.dreamforest.model.User
+import com.example.dreamforest.dto.UserUpdateDTO
+import com.example.dreamforest.entity.User
 import com.example.dreamforest.service.UserService
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
@@ -18,7 +19,11 @@ import javax.servlet.http.HttpServletResponse
 class AuthController(private val userService: UserService) {
 
     @PostMapping("signup")
-    fun singup(@RequestBody body: SignupDTO): ResponseEntity<User> {
+    fun singup(@RequestBody body: SignupDTO): ResponseEntity<Any> {
+        val userexist = this.userService.findByEmail(body.email)
+        if(userexist != null){
+            return ResponseEntity.badRequest().body(Message("user is exist!"))
+        }
         val user = User()
         user.email = body.email
         user.name = body.name
@@ -59,10 +64,15 @@ class AuthController(private val userService: UserService) {
 
             val body = Jwts.parser().setSigningKey("secret").parseClaimsJws(jwt).body
 
-            return ResponseEntity.ok(this.userService.getById(body.issuer.toInt()))
+            return ResponseEntity.ok(this.userService.getById(body.issuer.toLong()))
         } catch (e: Exception) {
             return ResponseEntity.status(401).body(Message("unauth"))
         }
+    }
+
+    @PutMapping("user/{user_id}")
+    fun updateUserInfo(@PathVariable user_id : Long, @RequestBody userUpdateDTO: UserUpdateDTO) : Long? {
+        return userService.updateUserInfo(user_id, userUpdateDTO)
     }
 
     @PostMapping("logout")
