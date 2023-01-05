@@ -2,6 +2,7 @@ package com.example.dreamforest.dto
 
 import com.example.dreamforest.entity.Store
 import java.io.Serializable
+import java.util.Date
 
 class StoreGetDTO (
     var id: Long = 0,
@@ -10,7 +11,7 @@ class StoreGetDTO (
     var road_address: String? = null,
     var parcel_address: String? = null,
     var phone_number: String? = null,
-    var store_update_date: String? = null,
+    var store_update_date: Date? = null,
     var latitude: Double? = null,
     var longitude: Double? = null,
 ) : Serializable {

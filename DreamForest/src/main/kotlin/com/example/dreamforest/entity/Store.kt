@@ -16,7 +16,7 @@ class Store(
     var road_address: String? = null,
     var parcel_address: String? = null,
     var phone_number: String? = null,
-    var store_update_date: String? = null,
+    var store_update_date: Date? = null,
     var latitude: Double? = null,
     var longitude: Double? = null,
 ) {
