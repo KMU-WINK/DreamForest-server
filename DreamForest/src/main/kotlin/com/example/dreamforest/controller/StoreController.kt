@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("store")
 class StoreController(private val storeService: StoreService) {
 
-    @GetMapping("info/{store_id}")
+    @GetMapping("detail/{store_id}")
     fun findStore(@PathVariable store_id : Long) : Any{
         return storeService.findStoreByStoreId(store_id)
     }
