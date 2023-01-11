@@ -12,8 +12,8 @@ class StoreGetDTO (
     var parcel_address: String? = null,
     var phone_number: String? = null,
     var store_update_date: Date? = null,
-    var latitude: Double? = null,
-    var longitude: Double? = null,
+    var naver_x: Double? = null,
+    var naver_y: Double? = null,
 ) : Serializable {
-    constructor(entity: Store) : this(entity.id, entity.type, entity.store_name, entity.road_address, entity.parcel_address, entity.phone_number, entity.store_update_date, entity.latitude, entity.longitude)
+    constructor(entity: Store) : this(entity.id, entity.type, entity.store_name, entity.road_address, entity.parcel_address, entity.phone_number, entity.store_update_date, entity.naver_x, entity.naver_y)
 }
