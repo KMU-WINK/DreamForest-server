@@ -1,16 +1,11 @@
-package com.example.dreamforest.entity
+package com.example.dreamforest.dto
 
-import java.util.Date
-import javax.persistence.*
+import com.example.dreamforest.entity.Naver_reviews
+import java.io.Serializable
+import java.util.*
+import javax.persistence.Column
 
-@Entity
-class Naver_reviews(
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long = 0,
-    @ManyToOne
-    @JoinColumn(name="store_id")
-    var store: Store? = null,
+class ReviewGetDTO (
     var naver_place_id: Long? = null,
     var review_id: String? = null,
     var rating: Float? = null,
@@ -26,5 +21,6 @@ class Naver_reviews(
     var visit_date: Date? = null,
     var visit_type: String? = null,
     var visit_count: Long? = null,
-) {
+    ) : Serializable {
+    constructor(entity: Naver_reviews) : this(entity.naver_place_id, entity.review_id, entity.rating, entity.user_id, entity.user_nickname, entity.user_from, entity.user_image_url, entity.user_object_id, entity.user_url, entity.review_body, entity.review_image, entity.visit_date,entity.visit_type, entity.visit_count)
 }
