@@ -1,10 +1,7 @@
 package com.example.dreamforest.entity
 
 import java.util.Date
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 class Naver_reviews(
@@ -12,6 +9,7 @@ class Naver_reviews(
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long = 0,
     var stores_id: Long? = null,
+    var naver_place_id: Long? = null,
     var review_id: String? = null,
     var rating: Float? = null,
     var user_id: String? = null,
@@ -21,6 +19,7 @@ class Naver_reviews(
     var user_object_id: String? = null,
     var user_url: String? = null,
     var review_body: String? = null,
+    @Column(columnDefinition = "json")
     var review_image: String? = null,
     var visit_date: Date? = null,
     var visit_type: String? = null,

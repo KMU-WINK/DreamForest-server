@@ -1,11 +1,14 @@
 package com.example.dreamforest.entity
 
+import org.hibernate.annotations.TypeDef
 import java.awt.Image
 import java.sql.Date
+import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+
 
 @Entity
 class Store(
@@ -24,13 +27,17 @@ class Store(
     var naver_store_name: String? = null,
     var naver_parcel_address: String? = null,
     var naver_phone: String? = null,
+    @Column(columnDefinition = "json")
     var naver_categories: String? = null,
+    @Column(columnDefinition = "json")
     var naver_biz_hour: String? = null,
+    @Column(columnDefinition = "json")
     var naver_menus: String? = null,
+    @Column(columnDefinition = "json")
     var naver_menu_images: String? = null,
     var naver_blog_review_count: Long? = null,
-    var naver_update_at: Date? = null,
     var naver_average_rating: Float? = null,
     var naver_visit_review_count: Long? = null,
+    var naver_update_at: Date? = null,
 ) {
 }
