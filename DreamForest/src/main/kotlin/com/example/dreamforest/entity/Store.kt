@@ -38,6 +38,6 @@ class Store(
     var naver_blog_review_count: Long? = null,
     var naver_average_rating: Float? = null,
     var naver_visit_review_count: Long? = null,
-    var naver_update_at: Date? = null,
+    var naver_updated_at: Date? = null,
 ) {
 }
