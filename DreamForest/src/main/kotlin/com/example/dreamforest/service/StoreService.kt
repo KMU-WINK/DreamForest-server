@@ -14,9 +14,9 @@ class StoreService (val storeRepository: StoreRepository){
         return StoreGetDTO(entity)
     }
 
-    fun findNearStore( naver_x : Double, naver_y : Double) : MutableList<StoreGetDTO> {
+    fun findNearStore( user_x : Double, user_y : Double) : MutableList<StoreGetDTO> {
         val result = mutableListOf<StoreGetDTO>()
-        val storeInfoProjections = storeRepository.findNearStore(naver_x,naver_y) ?: return result
+        val storeInfoProjections = storeRepository.findNearStore(user_x,user_y) ?: return result
         for (storeInfoProjection in storeInfoProjections) {
             val storeInfoDto = StoreGetDTO(storeInfoProjection)
             result.add(storeInfoDto)

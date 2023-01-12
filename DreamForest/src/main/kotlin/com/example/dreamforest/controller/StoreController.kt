@@ -18,7 +18,7 @@ class StoreController(private val storeService: StoreService) {
     }
 
     @GetMapping("search")
-    fun findNearStore(@RequestParam naver_x : Double, @RequestParam naver_y : Double) : MutableList<StoreGetDTO> {
-        return storeService.findNearStore(naver_x, naver_y)
+    fun findNearStore(@RequestParam user_x : Double, @RequestParam user_y : Double) : MutableList<StoreGetDTO> {
+        return storeService.findNearStore(user_x, user_y)
     }
 }
